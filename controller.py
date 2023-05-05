@@ -33,14 +33,20 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.HeightLine.setHidden(True)
         self.AnswerLine.setHidden(True)
 
+        #set all radio button in a group
+        self.group_button = QButtonGroup(self)
+        self.group_button.addButton(self.CircleButton)
+        self.group_button.addButton(self.SquareButton)
+        self.group_button.addButton(self.TriangleButton)
+        self.group_button.addButton(self.RectangleButton)
+        self.group_button.addButton(self.ParalButton)
+        self.group_button.addButton(self.RhombusButton)
+
         #create variable
         self.circle_A = 0.00
         self.circle_P = 0.00
         self.square_A = 0.00
         self.square_P = 0.00
-
-
-
 
     def Circle(self):
         """
@@ -66,7 +72,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.SideLabel.setHidden(False)
         self.SideLine.setHidden(False)
         try:
-            side = float(self.RadiusLine.text())
+            side = float(self.SideLine.text())
 
         except ValueError:
             self.AnswerLine.setText("invalid")
@@ -109,18 +115,27 @@ class Controller(QMainWindow, Ui_MainWindow):
         :return:
         '''
         self.AnswerLine.setHidden(False)
-        try:
-            if self.CircleButton.isChecked():
-                self.Circle()
-            elif self.SquareButton.isChecked():
-                self.Square()
 
-        except ValueError:
-            self.AnswerLine.setText("You need to select the shape")
-            return
+        if self.CircleButton.isChecked():
+            self.Circle()
+        elif self.SquareButton.isChecked():
+            self.Square()
+        else:
+            self.AnswerLine.setText("Choose shape first")
+
+
         #call the function
 
     def Clear(self):
+        # clear all the radio button
+        self.group_button.setExclusive(False)
+        self.CircleButton.setChecked(False)
+        self.SquareButton.setChecked(False)
+        self.TriangleButton.setChecked(False)
+        self.RectangleButton.setChecked(False)
+        self.ParalButton.setChecked(False)
+        self.RhombusButton.setChecked(False)
+        #hide all the label and line input box
         self.RadiusLabel.setHidden(True)
         self.RadiusLine.setHidden(True)
         self.LengthLabel.setHidden(True)
@@ -134,8 +149,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.HeightLabel.setHidden(True)
         self.HeightLine.setHidden(True)
         self.AnswerLine.setHidden(True)
-        self.CircleButton.setChecked(False)
-        self.SquareButton.setChecked(False)
+
 
 
 
