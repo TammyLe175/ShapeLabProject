@@ -12,8 +12,11 @@ class Controller(QMainWindow, Ui_MainWindow):
 
         self.CircleButton.toggled.connect(self.Circle)
         self.SquareButton.toggled.connect(self.Square)
+
+
         #answer and clear button
         self.AnswerButton.clicked.connect(lambda: self.Submit())
+        self.ClearButton.clicked.connect(lambda: self.Clear())
 
         # set all input box hidden
         self.RadiusLabel.setHidden(True)
@@ -31,10 +34,11 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.AnswerLine.setHidden(True)
 
         #create variable
-        self.circle_area = 0.00
-        self.circle_perimeter = 0.00
-        #self.square_area = 0.00
-        #self.square_perimeter = 0.00
+        self.circle_A = 0.00
+        self.circle_P = 0.00
+        self.square_A = 0.00
+        self.square_P = 0.00
+
 
 
 
@@ -42,35 +46,39 @@ class Controller(QMainWindow, Ui_MainWindow):
         """
         calculate the area and perimeter of circle
         """
+        self.RadiusLabel.setHidden(False)
+        self.RadiusLine.setHidden(False)
         try:
-            self.RadiusLabel.setHidden(False)
-            self.RadiusLine.setHidden(False)
             radius = float(self.RadiusLine.text())
-            self.circle_area = pi * (radius ** 2)
-            self.circle_perimeter = 2 * pi * radius
 
         except ValueError:
-            self.AnswerLine.setText("Invalid")
+            self.AnswerLine.setText("invalid")
+            return
+        self.circle_A = pi * radius ** 2
+        self.circle_P = pi * 2 * radius
+        self.AnswerLine.setText(f"Area = {self.circle_A} \n Perimeter = {self.circle_P}")
 
 
     def Square(self):
         '''
         calculate the area and perimeter of square
-        :return: area and perimeter
         '''
+        self.SideLabel.setHidden(False)
+        self.SideLine.setHidden(False)
+        try:
+            side = float(self.RadiusLine.text())
 
-       # self.SideLabel.setHidden(False)
-       # self.SideLine.setHidden(False)
-       # side = float(self.SideLine.text())
-       # self.square_area = side * side
-       # self.square_perimeter = 4 * side
-
+        except ValueError:
+            self.AnswerLine.setText("invalid")
+            return
+        self.square_A = side * side
+        self.square_P = 4 * side
+        self.AnswerLine.setText(f"Area = {self.square_A} \n Perimeter = {self.square_P}")
 
 
     def Rectangle(self):
         '''
         calculate the area and perimeter of rectangle
-        :return: area and perimeter
         '''
         pass
 
@@ -78,7 +86,6 @@ class Controller(QMainWindow, Ui_MainWindow):
     def Parallelogram(self):
         '''
         calculate the area and perimeter of parallelogram
-        :return: area and perimeter
         '''
         pass
 
@@ -87,14 +94,12 @@ class Controller(QMainWindow, Ui_MainWindow):
     def Triangle(self):
         '''
                calculate the area and perimeter of triangle
-               :return: area and perimeter
         '''
         pass
 
     def Rhombus(self):
         '''
                calculate the area and perimeter of rhombus
-               :return: area and perimeter
                '''
         pass
 
@@ -104,8 +109,35 @@ class Controller(QMainWindow, Ui_MainWindow):
         :return:
         '''
         self.AnswerLine.setHidden(False)
+        try:
+            if self.CircleButton.isChecked():
+                self.Circle()
+            elif self.SquareButton.isChecked():
+                self.Square()
 
-        if self.CircleButton.toggled.connect(self.Circle):
-            self.AnswerLine.setText(f'Area of circle = {self.circle_area}\nPerimeter of circle = {self.circle_perimeter}\n')
-        elif self.SquareButton.toggled.connect(self.Square):
-                self.AnswerLine.setText(f'Area of square = {self.square_area}\nPerimeter of square = {self.square_perimeter}\n')
+        except ValueError:
+            self.AnswerLine.setText("You need to select the shape")
+            return
+        #call the function
+
+    def Clear(self):
+        self.RadiusLabel.setHidden(True)
+        self.RadiusLine.setHidden(True)
+        self.LengthLabel.setHidden(True)
+        self.LengthLine.setHidden(True)
+        self.BaseLabel.setHidden(True)
+        self.BaseLine.setHidden(True)
+        self.SideLabel.setHidden(True)
+        self.SideLine.setHidden(True)
+        self.WidthLabel.setHidden(True)
+        self.WidthLine.setHidden(True)
+        self.HeightLabel.setHidden(True)
+        self.HeightLine.setHidden(True)
+        self.AnswerLine.setHidden(True)
+        self.CircleButton.setChecked(False)
+        self.SquareButton.setChecked(False)
+
+
+
+
+
