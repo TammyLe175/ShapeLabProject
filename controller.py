@@ -12,13 +12,16 @@ class Controller(QMainWindow, Ui_MainWindow):
 
         self.CircleButton.toggled.connect(self.Circle)
         self.SquareButton.toggled.connect(self.Square)
-
+        self.TriangleButton.toggled.connect(self.Triangle)
+        self.RectangleButton.toggled.connect(self.Rectangle)
+        self.ParalButton.toggled.connect(self.Parallelogram)
+        self.RhombusButton.toggled.connect(self.Rhombus)
 
         #answer and clear button
         self.AnswerButton.clicked.connect(lambda: self.Submit())
         self.ClearButton.clicked.connect(lambda: self.Clear())
 
-        # set all input box hidden
+        # set all input box and label in hidden
         self.RadiusLabel.setHidden(True)
         self.RadiusLine.setHidden(True)
         self.LengthLabel.setHidden(True)
@@ -47,10 +50,19 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.circle_P = 0.00
         self.square_A = 0.00
         self.square_P = 0.00
-
+        self.rectangle_A = 0.00
+        self.rectangle_P = 0.00
+        self.triangle_A = 0.00
+        self.triangle_P = 0.00
+        self.parall_A = 0.00
+        self.parall_P = 0.00
+        self.rhombus_A = 0.00
+        self.rhombus_P = 0.00
     def Circle(self):
         """
+        show radius label and line
         calculate the area and perimeter of circle
+        :return: the area and perimeter in Answer box if user enter string return invalid
         """
         self.RadiusLabel.setHidden(False)
         self.RadiusLine.setHidden(False)
@@ -67,7 +79,9 @@ class Controller(QMainWindow, Ui_MainWindow):
 
     def Square(self):
         '''
+        show side label and line
         calculate the area and perimeter of square
+        :return: area and perimeter or invalid in Answer box
         '''
         self.SideLabel.setHidden(False)
         self.SideLine.setHidden(False)
@@ -86,28 +100,80 @@ class Controller(QMainWindow, Ui_MainWindow):
         '''
         calculate the area and perimeter of rectangle
         '''
-        pass
+        self.LengthLabel.setHidden(False)
+        self.LengthLine.setHidden(False)
+        self.WidthLabel.setHidden(False)
+        self.WidthLine.setHidden(False)
+        try:
+            length = float(self.LengthLine.text())
+            width = float(self.WidthLine.text())
+
+        except ValueError:
+            self.AnswerLine.setText("invalid")
+            return
+        self.rectangle_A = length * width
+        self.rectangle_P = (2 * length) + (2 * width)
+        self.AnswerLine.setText(f"Area = {self.rectangle_A} \n Perimeter = {self.rectangle_P}")
 
 
     def Parallelogram(self):
         '''
         calculate the area and perimeter of parallelogram
         '''
-        pass
+        self.BaseLabel.setHidden(False)
+        self.BaseLine.setHidden(False)
+        self.HeightLabel.setHidden(False)
+        self.HeightLine.setHidden(False)
+        try:
+            base = float(self.BaseLine.text())
+            height = float(self.HeightLine.text())
 
-
+        except ValueError:
+            self.AnswerLine.setText("invalid")
+            return
+        self.parall_A = base * height
+        self.parall_P = 2 * (base + height)
+        self.AnswerLine.setText(f"Area = {self.parall_A} \n Perimeter = {self.parall_P}")
 
     def Triangle(self):
         '''
                calculate the area and perimeter of triangle
         '''
-        pass
+        self.SideLabel.setHidden(False)
+        self.SideLine.setHidden(False)
+        self.BaseLabel.setHidden(False)
+        self.BaseLine.setHidden(False)
+        self.HeightLabel.setHidden(False)
+        self.HeightLine.setHidden(False)
+        try:
+            side = float(self.SideLine.text())
+            base = float(self.BaseLine.text())
+            height = float(self.HeightLine.text())
 
+        except ValueError:
+            self.AnswerLine.setText("invalid")
+            return
+        self.triangle_A = 0.5 * base * height
+        self.triangle_P = (2 * side) + base
+        self.AnswerLine.setText(f"Area = {self.triangle_A} \n Perimeter = {self.triangle_P}")
     def Rhombus(self):
         '''
                calculate the area and perimeter of rhombus
                '''
-        pass
+        self.BaseLabel.setHidden(False)
+        self.BaseLine.setHidden(False)
+        self.HeightLabel.setHidden(False)
+        self.HeightLine.setHidden(False)
+        try:
+            base = float(self.BaseLine.text())
+            height = float(self.HeightLine.text())
+
+        except ValueError:
+            self.AnswerLine.setText("invalid")
+            return
+        self.rhombus_A = base * height
+        self.rhombus_P = 4 * base
+        self.AnswerLine.setText(f"Area = {self.rhombus_A} \n Perimeter = {self.rhombus_P}")
 
     def Submit(self):
         '''
@@ -120,6 +186,14 @@ class Controller(QMainWindow, Ui_MainWindow):
             self.Circle()
         elif self.SquareButton.isChecked():
             self.Square()
+        elif self.TriangleButton.isChecked():
+            self.Triangle()
+        elif self.RectangleButton.isChecked():
+            self.Rectangle()
+        elif self.ParalButton.isChecked():
+            self.Parallelogram()
+        elif self.RhombusButton.isChecked():
+            self.Rhombus()
         else:
             self.AnswerLine.setText("Choose shape first")
 
@@ -138,17 +212,24 @@ class Controller(QMainWindow, Ui_MainWindow):
         #hide all the label and line input box
         self.RadiusLabel.setHidden(True)
         self.RadiusLine.setHidden(True)
+        self.RadiusLine.clear()
         self.LengthLabel.setHidden(True)
         self.LengthLine.setHidden(True)
+        self.LengthLine.clear()
         self.BaseLabel.setHidden(True)
         self.BaseLine.setHidden(True)
+        self.BaseLine.clear()
         self.SideLabel.setHidden(True)
         self.SideLine.setHidden(True)
+        self.SideLine.clear()
         self.WidthLabel.setHidden(True)
         self.WidthLine.setHidden(True)
+        self.WidthLine.clear()
         self.HeightLabel.setHidden(True)
         self.HeightLine.setHidden(True)
+        self.HeightLine.clear()
         self.AnswerLine.setHidden(True)
+        self.AnswerLine.clear()
 
 
 
