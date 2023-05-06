@@ -98,7 +98,9 @@ class Controller(QMainWindow, Ui_MainWindow):
 
     def Rectangle(self):
         '''
+        show length, width label and line
         calculate the area and perimeter of rectangle
+        :return: area and perimeter or invalid in Answer box
         '''
         self.LengthLabel.setHidden(False)
         self.LengthLine.setHidden(False)
@@ -118,7 +120,9 @@ class Controller(QMainWindow, Ui_MainWindow):
 
     def Parallelogram(self):
         '''
+        show base, height label and line
         calculate the area and perimeter of parallelogram
+        :return: area and perimeter or invalid in Answer box
         '''
         self.BaseLabel.setHidden(False)
         self.BaseLine.setHidden(False)
@@ -137,7 +141,9 @@ class Controller(QMainWindow, Ui_MainWindow):
 
     def Triangle(self):
         '''
-               calculate the area and perimeter of triangle
+        show side,base,height label and line
+        calculate the area and perimeter of triangle
+        :return: area and perimeter or invalid in Answer box
         '''
         self.SideLabel.setHidden(False)
         self.SideLine.setHidden(False)
@@ -158,7 +164,9 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.AnswerLine.setText(f"Area = {self.triangle_A} \n Perimeter = {self.triangle_P}")
     def Rhombus(self):
         '''
-               calculate the area and perimeter of rhombus
+        show base,height label and line
+        calculate the area and perimeter of Rhombus
+        :return: area and perimeter or invalid in Answer box
                '''
         self.BaseLabel.setHidden(False)
         self.BaseLine.setHidden(False)
@@ -177,8 +185,8 @@ class Controller(QMainWindow, Ui_MainWindow):
 
     def Submit(self):
         '''
-
-        :return:
+        show Answer box
+        check if a radio button is checked do call the function
         '''
         self.AnswerLine.setHidden(False)
 
@@ -197,9 +205,6 @@ class Controller(QMainWindow, Ui_MainWindow):
         else:
             self.AnswerLine.setText("Choose shape first")
 
-
-        #call the function
-
     def Clear(self):
         # clear all the radio button
         self.group_button.setExclusive(False)
@@ -209,7 +214,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.RectangleButton.setChecked(False)
         self.ParalButton.setChecked(False)
         self.RhombusButton.setChecked(False)
-        #hide all the label and line input box
+        #hide and clear all the label and line input box
         self.RadiusLabel.setHidden(True)
         self.RadiusLine.setHidden(True)
         self.RadiusLine.clear()
