@@ -1,15 +1,20 @@
 from view import *
 from PyQt5.QtWidgets import *
 from math import *
-
+from PyQt5.QtGui import QPixmap
 
 class Controller(QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        '''
+        add all radio button and submit and clear button
+        hide all the input and answer box
+        grouping all the radio button 
+        create all variables in need
+        '''
 
         #add 6 radio button
-
         self.CircleButton.toggled.connect(self.Circle)
         self.SquareButton.toggled.connect(self.Square)
         self.TriangleButton.toggled.connect(self.Triangle)
@@ -17,7 +22,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.ParalButton.toggled.connect(self.Parallelogram)
         self.RhombusButton.toggled.connect(self.Rhombus)
 
-        #answer and clear button
+        # set submit and clear button
         self.AnswerButton.clicked.connect(lambda: self.Submit())
         self.ClearButton.clicked.connect(lambda: self.Clear())
 
@@ -70,11 +75,11 @@ class Controller(QMainWindow, Ui_MainWindow):
             radius = float(self.RadiusLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.circle_A = pi * radius ** 2
         self.circle_P = pi * 2 * radius
-        self.AnswerLine.setText(f"Area = {self.circle_A} \n Perimeter = {self.circle_P}")
+        self.AnswerLine.setText(f"Area of Circle = {self.circle_A:.2f} \n Perimeter of circle = {self.circle_P:.2f}")
 
 
     def Square(self):
@@ -85,16 +90,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         '''
         self.SideLabel.setHidden(False)
         self.SideLine.setHidden(False)
+
         try:
             side = float(self.SideLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.square_A = side * side
         self.square_P = 4 * side
-        self.AnswerLine.setText(f"Area = {self.square_A} \n Perimeter = {self.square_P}")
-
+        self.AnswerLine.setText(f"Area of Square = {self.square_A:.2f} \n Perimeter of Square = {self.square_P:.2f}")
 
     def Rectangle(self):
         '''
@@ -111,12 +116,11 @@ class Controller(QMainWindow, Ui_MainWindow):
             width = float(self.WidthLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.rectangle_A = length * width
         self.rectangle_P = (2 * length) + (2 * width)
-        self.AnswerLine.setText(f"Area = {self.rectangle_A} \n Perimeter = {self.rectangle_P}")
-
+        self.AnswerLine.setText(f"Area of Rectangle = {self.rectangle_A:.2f} \n Perimeter of Rectangle = {self.rectangle_P:.2f}")
 
     def Parallelogram(self):
         '''
@@ -133,11 +137,11 @@ class Controller(QMainWindow, Ui_MainWindow):
             height = float(self.HeightLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.parall_A = base * height
         self.parall_P = 2 * (base + height)
-        self.AnswerLine.setText(f"Area = {self.parall_A} \n Perimeter = {self.parall_P}")
+        self.AnswerLine.setText(f"Area of Parallelogram = {self.parall_A} \n Perimeter of Parallelogram = {self.parall_P}")
 
     def Triangle(self):
         '''
@@ -157,11 +161,11 @@ class Controller(QMainWindow, Ui_MainWindow):
             height = float(self.HeightLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.triangle_A = 0.5 * base * height
         self.triangle_P = (2 * side) + base
-        self.AnswerLine.setText(f"Area = {self.triangle_A} \n Perimeter = {self.triangle_P}")
+        self.AnswerLine.setText(f"Area of Right Triangle = {self.triangle_A:.2f} \n Perimeter of Right Triangle = {self.triangle_P:.2f}")
     def Rhombus(self):
         '''
         show base,height label and line
@@ -177,16 +181,16 @@ class Controller(QMainWindow, Ui_MainWindow):
             height = float(self.HeightLine.text())
 
         except ValueError:
-            self.AnswerLine.setText("invalid")
+            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.rhombus_A = base * height
         self.rhombus_P = 4 * base
-        self.AnswerLine.setText(f"Area = {self.rhombus_A} \n Perimeter = {self.rhombus_P}")
+        self.AnswerLine.setText(f"Area of Rhombus = {self.rhombus_A:.2f} \n Perimeter of Rhombus = {self.rhombus_P:.2f}")
 
     def Submit(self):
         '''
-        show Answer box
-        check if a radio button is checked do call the function
+        show the Answer in answer box
+        check if a radio button is checked + call the function
         '''
         self.AnswerLine.setHidden(False)
 
@@ -203,9 +207,12 @@ class Controller(QMainWindow, Ui_MainWindow):
         elif self.RhombusButton.isChecked():
             self.Rhombus()
         else:
-            self.AnswerLine.setText("Choose shape first")
+            self.AnswerLine.setText("Please Choose Shape First")
 
     def Clear(self):
+        '''
+        hide and clear the number in all the input box and answer box
+        '''
         # clear all the radio button
         self.group_button.setExclusive(False)
         self.CircleButton.setChecked(False)
@@ -235,6 +242,7 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.HeightLine.clear()
         self.AnswerLine.setHidden(True)
         self.AnswerLine.clear()
+
 
 
 
