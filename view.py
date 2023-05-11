@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
         self.ImageLabel = QtWidgets.QLabel(self.centralwidget)
         self.ImageLabel.setGeometry(QtCore.QRect(290, 270, 261, 161))
         self.ImageLabel.setText("")
-        self.ImageLabel.setPixmap(QtGui.QPixmap("../../Downloads/shapeimage.png"))
+        self.ImageLabel.setPixmap(QtGui.QPixmap("shapeimage.png"))
         self.ImageLabel.setScaledContents(True)
         self.ImageLabel.setObjectName("ImageLabel")
         MainWindow.setCentralWidget(self.centralwidget)
