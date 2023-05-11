@@ -9,9 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-'''
-this is view window file
-'''
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -142,7 +140,7 @@ class Ui_MainWindow(object):
         self.ImageLabel = QtWidgets.QLabel(self.centralwidget)
         self.ImageLabel.setGeometry(QtCore.QRect(290, 270, 261, 161))
         self.ImageLabel.setText("")
-        self.ImageLabel.setPixmap(QtGui.QPixmap("../../Library/CloudStorage/OneDrive-UniversityofNebraskaatOmaha/IT Ethics/shapeimage.png"))
+        self.ImageLabel.setPixmap(QtGui.QPixmap("../../Downloads/shapeimage.png"))
         self.ImageLabel.setScaledContents(True)
         self.ImageLabel.setObjectName("ImageLabel")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -176,6 +174,7 @@ class Ui_MainWindow(object):
         self.BaseLabel.setText(_translate("MainWindow", "Base(b)"))
         self.HeightLabel.setText(_translate("MainWindow", "Height(h)"))
         self.ClearButton.setText(_translate("MainWindow", "Clear"))
+
 
 if __name__ == "__main__":
     import sys
