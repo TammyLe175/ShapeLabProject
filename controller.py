@@ -1,7 +1,7 @@
 from view import *
 from PyQt5.QtWidgets import *
 from math import *
-from PyQt5.QtGui import QPixmap
+
 
 class Controller(QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -71,11 +71,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         """
         self.RadiusLabel.setHidden(False)
         self.RadiusLine.setHidden(False)
-        try:
-            radius = float(self.RadiusLine.text())
+        while True:
+            try:
+                radius = float(self.RadiusLine.text())
+                if radius > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Number should be Positive")
 
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.circle_A = pi * radius ** 2
         self.circle_P = pi * 2 * radius
@@ -90,12 +95,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         '''
         self.SideLabel.setHidden(False)
         self.SideLine.setHidden(False)
+        while True:
+            try:
+                side = float(self.SideLine.text())
+                if side > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Number should be Positive")
 
-        try:
-            side = float(self.SideLine.text())
-
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.square_A = side * side
         self.square_P = 4 * side
@@ -111,12 +120,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.LengthLine.setHidden(False)
         self.WidthLabel.setHidden(False)
         self.WidthLine.setHidden(False)
-        try:
-            length = float(self.LengthLine.text())
-            width = float(self.WidthLine.text())
-
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+        while True:
+            try:
+                length = float(self.LengthLine.text())
+                width = float(self.WidthLine.text())
+                if length > 0 and width > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Numbers should be Positive")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.rectangle_A = length * width
         self.rectangle_P = (2 * length) + (2 * width)
@@ -132,12 +145,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.BaseLine.setHidden(False)
         self.HeightLabel.setHidden(False)
         self.HeightLine.setHidden(False)
-        try:
-            base = float(self.BaseLine.text())
-            height = float(self.HeightLine.text())
-
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+        while True:
+            try:
+                base = float(self.BaseLine.text())
+                height = float(self.HeightLine.text())
+                if base > 0 and height > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Numbers should be Positive")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Numbers Only - Please Try Again")
             return
         self.parall_A = base * height
         self.parall_P = 2 * (base + height)
@@ -155,13 +172,18 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.BaseLine.setHidden(False)
         self.HeightLabel.setHidden(False)
         self.HeightLine.setHidden(False)
-        try:
-            side = float(self.SideLine.text())
-            base = float(self.BaseLine.text())
-            height = float(self.HeightLine.text())
+        while True:
+            try:
+                side = float(self.SideLine.text())
+                base = float(self.BaseLine.text())
+                height = float(self.HeightLine.text())
+                if side > 0 and base > 0 and height > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Numbers should be Positive")
 
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.triangle_A = 0.5 * base * height
         self.triangle_P = (2 * side) + base
@@ -176,12 +198,16 @@ class Controller(QMainWindow, Ui_MainWindow):
         self.BaseLine.setHidden(False)
         self.HeightLabel.setHidden(False)
         self.HeightLine.setHidden(False)
-        try:
-            base = float(self.BaseLine.text())
-            height = float(self.HeightLine.text())
-
-        except ValueError:
-            self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
+        while True:
+            try:
+                base = float(self.BaseLine.text())
+                height = float(self.HeightLine.text())
+                if base > 0 and height > 0:
+                    break
+                else:
+                    self.AnswerLine.setText("Numbers should be Positive")
+            except ValueError:
+                self.AnswerLine.setText("Invalid - Accept Number Only - Please Try Again")
             return
         self.rhombus_A = base * height
         self.rhombus_P = 4 * base
